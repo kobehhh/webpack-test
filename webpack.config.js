@@ -1,6 +1,7 @@
 const { resolve } = require("path");
 
 let HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
@@ -23,17 +24,18 @@ module.exports = {
       // 移除注释
       removeComments: true,
     }),
+    new MiniCssExtractPlugin({ filename: "index.css" }),
   ],
 
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "less-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
       },
     ],
   },
