@@ -46,6 +46,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+              plugins: [
+                ["@babel/plugin-proposal-decorators", { legacy: true }],
+              ],
+            },
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
@@ -58,13 +73,13 @@ module.exports = {
           // "postcss-loader",
           {
             loader: "postcss-loader",
-            options:{
-              plugins:[
-                require('autoprefixer')({
-                  overrideBrowserslist: ['last 5 version', '>1%', 'ios 7']
-                })
-              ]
-            }
+            options: {
+              plugins: [
+                require("autoprefixer")({
+                  overrideBrowserslist: ["last 5 version", ">1%", "ios 7"],
+                }),
+              ],
+            },
           },
           "less-loader",
         ],
