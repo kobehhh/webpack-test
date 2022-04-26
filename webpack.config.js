@@ -2,6 +2,8 @@ const { resolve } = require("path");
 
 let HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+// const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -15,6 +17,19 @@ module.exports = {
     filename: "bundle.js",
     path: resolve(__dirname, "build"),
   },
+  // optimization: {
+  //   minimizer: [
+  //     new OptimizeCSSAssetsPlugin({}),
+  //     new UglifyJsPlugin({
+  //       cache: true,
+  //       parallel: true,
+  //       sourceMap: true,
+  //       uglifyOptions: {
+  //         warnings: false,
+  //       },
+  //     }),
+  //   ],
+  // },
   plugins: [
     new HtmlWebpackPlugin({
       // 复制./src/index.html的文件，引入打包输出的所有资源
@@ -24,6 +39,7 @@ module.exports = {
       // 移除注释
       removeComments: true,
     }),
+    new OptimizeCSSAssetsPlugin({}),
     new MiniCssExtractPlugin({ filename: "index.css" }),
   ],
 
