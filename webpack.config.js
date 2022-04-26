@@ -35,7 +35,23 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          // "style-loader",
+          "css-loader",
+          // "postcss-loader",
+          {
+            loader: "postcss-loader",
+            options:{
+              plugins:[
+                require('autoprefixer')({
+                  overrideBrowserslist: ['last 5 version', '>1%', 'ios 7']
+                })
+              ]
+            }
+          },
+          "less-loader",
+        ],
       },
     ],
   },
