@@ -14,7 +14,7 @@ module.exports = {
     open: true,
   },
   output: {
-    filename: "bundle.js",
+    filename: "bundle.[contenthash:8].js",
     path: resolve(__dirname, "build"),
   },
   // optimization: {
