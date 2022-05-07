@@ -30,6 +30,7 @@ module.exports = {
   //     }),
   //   ],
   // },
+  devtool: 'eval-cheap-module-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       // 复制./src/index.html的文件，引入打包输出的所有资源
