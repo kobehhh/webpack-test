@@ -13,12 +13,12 @@ module.exports = {
   entry: "./src/index.js",
   devServer: {
     port: 8000,
-    contentBase: "./build", // 指向的目录
+    contentBase: "./dist", // 指向的目录
     open: true,
   },
   output: {
     filename: "bundle.[contenthash:8].js",
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "dist"),
   },
   // optimization: {
   //   minimizer: [
@@ -50,7 +50,7 @@ module.exports = {
         {
           from: '*.js',
           context: path.resolve(rootDir, "public/js"),
-          to: path.resolve(rootDir, 'build/js'),
+          to: path.resolve(rootDir, 'dist/js'),
         },
       ],
     })
