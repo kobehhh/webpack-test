@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const rootDir = process.cwd();
 
@@ -35,6 +36,7 @@ module.exports = {
   // },
   devtool: 'eval-cheap-module-source-map',
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // 复制./src/index.html的文件，引入打包输出的所有资源
       template: "./public/index.html",
