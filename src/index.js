@@ -1,22 +1,19 @@
-let str = require('./a')
+import "./a.js";
+require("./index.less");
 
-console.log('hello', str)
+let fn = (obj) => {
+  console.log(obj?.name);
+};
 
-require('./index.less')
-
-let fn = (a) => {
-  console.log(a?.name)
-}
-
-fn({name: 'wlf'})
+fn({ name: "wlf" });
 
 @log
 class A {
-  a = 1
+  a = 1;
 }
 
-console.log(new A().a)
+console.log(new A().a);
 
 function log(target) {
-  console.log(target)
+  console.log(target);
 }
