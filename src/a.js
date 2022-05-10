@@ -1,4 +1,4 @@
-
+import './a.ts'
 import img from './imgs/1.png';
 console.log(img);
 
