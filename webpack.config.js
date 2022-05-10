@@ -4,9 +4,10 @@ let HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const rootDir = process.cwd();
 
@@ -35,7 +36,7 @@ module.exports = {
   //     }),
   //   ],
   // },
-  devtool: 'eval-cheap-module-source-map',
+  devtool: "eval-cheap-module-source-map",
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -51,13 +52,13 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: '*.js',
+          from: "*.js",
           context: path.resolve(rootDir, "public/js"),
-          to: path.resolve(rootDir, 'dist/js'),
+          to: path.resolve(rootDir, "dist/js"),
         },
       ],
     }),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
 
   module: {
@@ -71,7 +72,11 @@ module.exports = {
             options: {
               presets: ["@babel/preset-env"],
               plugins: [
-                ["@babel/plugin-proposal-decorators", { legacy: true }, "@babel/plugin-transform-runtime"],
+                [
+                  "@babel/plugin-proposal-decorators",
+                  { legacy: true },
+                  "@babel/plugin-transform-runtime",
+                ],
               ],
             },
           },
@@ -100,6 +105,14 @@ module.exports = {
           },
           "less-loader",
         ],
+      },
+      {
+        test: /\.(png|jpg?g|gif)$/i,
+        loader: "url-loader",
+        options: {
+          limit: 8 * 1024,
+          name: "[name]_[hash:8].[ext]",
+        },
       },
     ],
   },
