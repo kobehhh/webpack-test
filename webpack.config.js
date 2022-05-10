@@ -6,6 +6,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const rootDir = process.cwd();
 
@@ -55,7 +56,8 @@ module.exports = {
           to: path.resolve(rootDir, 'dist/js'),
         },
       ],
-    })
+    }),
+    new BundleAnalyzerPlugin(),
   ],
 
   module: {
