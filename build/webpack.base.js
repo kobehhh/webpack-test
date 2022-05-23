@@ -13,20 +13,40 @@ const rootDir = process.cwd();
 
 module.exports = {
   entry: "./src/index.js",
+  // entry: {
+  //   index: './src/index.js',
+  //   other: './src/other.js',
+  // },
   output: {
     filename: "bundle.[hash:8].js",
     path: path.resolve(rootDir, "dist"),
   },
+  // output: {
+  //   filename: "[name].[hash:8].js",
+  //   path: path.resolve(rootDir, "dist"),
+  // },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // 复制./src/index.html的文件，引入打包输出的所有资源
-      template: "./public/index.html",  
+      template: "./public/index.html",
+      filename: "index.html",
       // 移除空格
       collapseWhitespace: true,
       // 移除注释
       removeComments: true,
+      // chunks: ['index']
     }),
+    // new HtmlWebpackPlugin({
+    //   // 复制./src/index.html的文件，引入打包输出的所有资源
+    //   template: "./public/other.html",  
+    //   filename: "other.html",
+    //   // 移除空格
+    //   collapseWhitespace: true,
+    //   // 移除注释
+    //   removeComments: true,
+    //   chunks: ['other']
+    // }),
     new OptimizeCSSAssetsPlugin({}),
     new MiniCssExtractPlugin({ filename: "css/index.css" }),
     new CopyWebpackPlugin({
