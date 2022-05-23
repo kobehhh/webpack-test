@@ -21,14 +21,14 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // 复制./src/index.html的文件，引入打包输出的所有资源
-      template: "./public/index.html",
+      template: "./public/index.html",  
       // 移除空格
       collapseWhitespace: true,
       // 移除注释
       removeComments: true,
     }),
     new OptimizeCSSAssetsPlugin({}),
-    new MiniCssExtractPlugin({ filename: "index.css" }),
+    new MiniCssExtractPlugin({ filename: "css/index.css" }),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -91,6 +91,7 @@ module.exports = {
         options: {
           limit: 8 * 1024,
           name: "[name]_[hash:8].[ext]",
+          outputPath: 'img/',
         },
       },
       // {
